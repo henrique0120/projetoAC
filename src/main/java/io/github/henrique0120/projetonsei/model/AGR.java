@@ -7,30 +7,29 @@ import java.util.List;
 @Entity
 @Table(name = "AGR_table")
 public class AGR {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int Id;
 
-    @Column(length = 11)
+    @Column(length = 11, nullable = false)
     private String cpf;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "agr")
-    private List<Certificate> certificates;
+    private List<Client> clients;
 
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        Id = id;
     }
 
     public String getCpf() {
@@ -57,11 +56,11 @@ public class AGR {
         this.email = email;
     }
 
-    public List<Certificate> getCertificates() {
-        return certificates;
+    public List<Client> getClients() {
+        return clients;
     }
 
-    public void setCertificates(List<Certificate> certificates) {
-        this.certificates = certificates;
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 }
