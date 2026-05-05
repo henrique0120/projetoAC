@@ -1,5 +1,6 @@
 package io.github.henrique0120.projetonsei.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class AGR {
     private String email;
 
     @OneToMany(mappedBy = "agr")
+    @JsonManagedReference
     private List<Client> clients;
 
 

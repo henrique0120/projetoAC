@@ -1,5 +1,6 @@
 package io.github.henrique0120.projetonsei.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -23,6 +24,7 @@ public class Client {
 
     @ManyToOne
     @JoinColumn(name = "agr_id", nullable = false)
+    @JsonBackReference
     private AGR agr;
 
     @OneToMany(mappedBy = "client")

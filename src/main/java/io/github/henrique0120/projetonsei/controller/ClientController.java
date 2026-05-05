@@ -2,24 +2,19 @@ package io.github.henrique0120.projetonsei.controller;
 
 import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.service.ClientService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/client")
 public class ClientController {
-    private final ClientService service;
 
-    public ClientController(ClientService service) {
-        this.service = service;
-    }
+    @Autowired
+    private ClientService service;
 
     @PostMapping
-    private Client registerClient(@RequestBody Client client){
-        service.registerClient(client);
-        return client;
+    public Client registerClient(@RequestBody Client client, @RequestParam int agrId){
+        return service.registerClient(client, agrId);
     }
 
 }

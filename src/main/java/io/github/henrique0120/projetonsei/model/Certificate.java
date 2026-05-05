@@ -1,5 +1,6 @@
 package io.github.henrique0120.projetonsei.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.henrique0120.projetonsei.enums.CertificateType;
 import jakarta.persistence.*;
 
