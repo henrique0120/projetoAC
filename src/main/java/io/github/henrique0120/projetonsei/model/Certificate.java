@@ -18,6 +18,7 @@ public class Certificate {
     private String password;
 
     @Column
+    @Enumerated
     private CertificateType type;
 
 //    @ManyToOne
@@ -26,7 +27,10 @@ public class Certificate {
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
+    @JsonBackReference
     private Client client;
+
+    public Certificate(){}
 
     public Certificate(String token, String password, CertificateType type) {
         this.type = type;

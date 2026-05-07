@@ -1,6 +1,7 @@
 package io.github.henrique0120.projetonsei.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,6 +29,7 @@ public class Client {
     private AGR agr;
 
     @OneToMany(mappedBy = "client")
+    @JsonManagedReference
     private List<Certificate> certificates;
 
     public int getId() {

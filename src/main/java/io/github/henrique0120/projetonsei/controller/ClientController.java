@@ -17,4 +17,18 @@ public class ClientController {
         return service.registerClient(client, agrId);
     }
 
+    @PutMapping("/update/{Id}")
+    public void updateClient(@PathVariable int Id,
+                             @RequestBody Client client,
+                             @RequestParam int agrId) {
+        service.updateClient(Id, agrId, client);
+    }
+
+    @DeleteMapping("/delete/{Id}")
+    public void deleteClient(@PathVariable("Id") int Id){
+        service.deleteClient(Id);
+    }
+
+
+
 }
