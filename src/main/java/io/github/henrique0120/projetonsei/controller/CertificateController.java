@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/certificate")
 public class CertificateController {
 
-    @Autowired
-    private CertificateService certificateService;
+    private final CertificateService certificateService;
+
+    public CertificateController(CertificateService certificateService) {
+        this.certificateService = certificateService;
+    }
 
     @PostMapping
     public Certificate saveCertificate(@RequestBody Certificate certificate, @RequestParam int clientId){

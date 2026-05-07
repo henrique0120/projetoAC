@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/AGR")
 public class AGRController {
 
-    @Autowired
-    private AGRService service;
+    private final AGRService service;
+
+    public AGRController(AGRService service) {
+        this.service = service;
+    }
 
     @PostMapping("/register")
     public AGR registerAGR(@RequestBody AGR agr){
