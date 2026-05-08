@@ -3,6 +3,10 @@ package io.github.henrique0120.projetonsei.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.henrique0120.projetonsei.enums.CertificateType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Date;
 
 @Entity
 @Table(name = "certificate_table")
@@ -17,7 +21,10 @@ public class Certificate {
     @Column(length = 50)
     private String password;
 
-    @Column
+    @CreationTimestamp
+    private Date date;
+
+    @Column(nullable = false)
     @Enumerated
     private CertificateType type;
 
@@ -84,6 +91,14 @@ public class Certificate {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     //    public CertificateStatus emitirCertificado(ECNPJ ecnpj){

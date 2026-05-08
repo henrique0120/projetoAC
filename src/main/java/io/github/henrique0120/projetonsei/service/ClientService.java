@@ -1,5 +1,6 @@
 package io.github.henrique0120.projetonsei.service;
 
+import io.github.henrique0120.projetonsei.components.ClientValidator;
 import io.github.henrique0120.projetonsei.model.AGR;
 import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.repository.AGRRepository;
@@ -10,13 +11,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
-    @Autowired
-    private ClientRepository clientRepository;
 
-    @Autowired
-    private AGRRepository AGRrepository;
+    private final ClientRepository clientRepository;
+    private final AGRRepository AGRrepository;
+    private final ClientValidator validator;
+
+    public ClientService(ClientRepository clientRepository, AGRRepository agRrepository, ClientValidator validator) {
+        this.clientRepository = clientRepository;
+        AGRrepository = agRrepository;
+        this.validator = validator;
+    }
 
     public Client registerClient(Client client, int agrId){
+        validator.validateClient(client);
+        validator.validateEmail(client);
         AGR agr = AGRrepository.getReferenceById(agrId);
         client.setAgr(agr);
         return clientRepository.save(client);

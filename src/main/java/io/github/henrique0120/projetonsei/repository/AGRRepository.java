@@ -10,5 +10,7 @@ import java.util.Optional;
 public interface AGRRepository extends JpaRepository<AGR, Integer> {
 
     Optional<AGR> findById(Integer Id);
+    boolean existsBycpf(String cpf);
+    boolean existsByemail(String email);
 
 }

@@ -1,22 +1,27 @@
 package io.github.henrique0120.projetonsei.service;
 
+import io.github.henrique0120.projetonsei.components.AGRValidator;
 import io.github.henrique0120.projetonsei.model.AGR;
 import io.github.henrique0120.projetonsei.repository.AGRRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class AGRService {
 
-    @Autowired
-    private AGRRepository repository;
+    private final AGRRepository repository;
+    private final AGRValidator validator;
 
-    public AGR registerAGR(@RequestBody AGR agr){
-        repository.save(agr);
-        return agr;
+    public AGRService(AGRRepository repository, AGRValidator validator) {
+        this.repository = repository;
+        this.validator = validator;
+    }
+
+    public AGR registerAGR(AGR agr){
+        validator.validateAGR(agr);
+        validator.validateEmail(agr);
+        return repository.save(agr);
     }
 
     public void updateAGR(@PathVariable("Id") int Id, @RequestBody AGR agr){
