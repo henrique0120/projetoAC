@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.UUID;
+
 @Service
 public class AGRService {
 
@@ -24,12 +26,12 @@ public class AGRService {
         return repository.save(agr);
     }
 
-    public void updateAGR(@PathVariable("Id") int Id, @RequestBody AGR agr){
+    public void updateAGR(@PathVariable("Id") UUID Id, @RequestBody AGR agr){
         agr.setId(Id);
         repository.save(agr);
     }
 
-    public void deleteAGR(@PathVariable("Id") int Id){
+    public void deleteAGR(@PathVariable("Id") UUID Id){
         repository.deleteById(Id);
     }
 

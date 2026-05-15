@@ -5,6 +5,8 @@ import io.github.henrique0120.projetonsei.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/client")
 public class ClientController {
@@ -16,19 +18,19 @@ public class ClientController {
     }
 
     @PostMapping
-    public Client registerClient(@RequestBody Client client, @RequestParam int agrId){
+    public Client registerClient(@RequestBody Client client, @RequestParam UUID agrId){
         return service.registerClient(client, agrId);
     }
 
     @PutMapping("/update/{Id}")
-    public void updateClient(@PathVariable int Id,
+    public void updateClient(@PathVariable UUID Id,
                              @RequestBody Client client,
-                             @RequestParam int agrId) {
+                             @RequestParam UUID agrId) {
         service.updateClient(Id, agrId, client);
     }
 
     @DeleteMapping("/delete/{Id}")
-    public void deleteClient(@PathVariable("Id") int Id){
+    public void deleteClient(@PathVariable("Id") UUID Id){
         service.deleteClient(Id);
     }
 

@@ -8,6 +8,8 @@ import io.github.henrique0120.projetonsei.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 @Service
 public class CertificateService {
@@ -18,13 +20,13 @@ public class CertificateService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Certificate saveCertificate(Certificate certificate, int clientId){
+    public Certificate saveCertificate(Certificate certificate, UUID clientId){
         Client client = clientRepository.getReferenceById(clientId);
         certificate.setClient(client);
         return certificateRepository.save(certificate);
     }
 
-    public void deleteCertificate(int Id){
+    public void deleteCertificate(UUID Id){
         certificateRepository.deleteById(Id);
     }
 }

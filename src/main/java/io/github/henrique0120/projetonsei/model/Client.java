@@ -3,16 +3,19 @@ package io.github.henrique0120.projetonsei.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "client_table")
+@Data
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID Id;
 
     @Column(length = 11)
     private String cpf;
@@ -32,51 +35,4 @@ public class Client {
     @JsonManagedReference
     private List<Certificate> certificates;
 
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public AGR getAgr() {
-        return agr;
-    }
-
-    public void setAgr(AGR agr) {
-        this.agr = agr;
-    }
-
-    public List<Certificate> getCertificates() {
-        return certificates;
-    }
-
-    public void setCertificates(List<Certificate> certificates) {
-        this.certificates = certificates;
-    }
 }

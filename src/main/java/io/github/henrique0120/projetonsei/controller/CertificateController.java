@@ -6,6 +6,8 @@ import io.github.henrique0120.projetonsei.service.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/certificate")
 public class CertificateController {
@@ -17,13 +19,13 @@ public class CertificateController {
     }
 
     @PostMapping
-    public Certificate saveCertificate(@RequestBody Certificate certificate, @RequestParam int clientId){
+    public Certificate saveCertificate(@RequestBody Certificate certificate, @RequestParam UUID clientId){
         certificateService.saveCertificate(certificate, clientId);
         return certificate;
     }
 
     @DeleteMapping("/delete/{Id}")
-    public void deleteCertificate(@PathVariable("Id") int Id){
+    public void deleteCertificate(@PathVariable("Id") UUID Id){
         certificateService.deleteCertificate(Id);
     }
 

@@ -8,6 +8,8 @@ import io.github.henrique0120.projetonsei.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class ClientService {
 
@@ -22,7 +24,7 @@ public class ClientService {
         this.validator = validator;
     }
 
-    public Client registerClient(Client client, int agrId){
+    public Client registerClient(Client client, UUID agrId){
         validator.validateClient(client);
         validator.validateEmail(client);
         AGR agr = AGRrepository.getReferenceById(agrId);
@@ -30,14 +32,14 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public void updateClient(int Id, int agrId, Client client) {
+    public void updateClient(UUID Id, UUID agrId, Client client) {
         AGR agr = AGRrepository.getReferenceById(agrId);
         client.setAgr(agr);
         client.setId(Id);
         clientRepository.save(client);
     }
 
-    public void deleteClient(int Id){
+    public void deleteClient(UUID Id){
         clientRepository.deleteById(Id);
     }
 

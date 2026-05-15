@@ -5,11 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface AGRRepository extends JpaRepository<AGR, Integer> {
+public interface AGRRepository extends JpaRepository<AGR, UUID> {
 
-    Optional<AGR> findById(Integer Id);
+    Optional<AGR> findById(UUID Id);
     boolean existsBycpf(String cpf);
     boolean existsByemail(String email);
 

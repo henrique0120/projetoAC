@@ -5,6 +5,8 @@ import io.github.henrique0120.projetonsei.service.AGRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/AGR")
 public class AGRController {
@@ -22,12 +24,12 @@ public class AGRController {
     }
 
     @PutMapping("/update/{Id}")
-    public void updateAGR(@PathVariable("Id") int Id, @RequestBody AGR agr){
+    public void updateAGR(@PathVariable("Id") UUID Id, @RequestBody AGR agr){
         service.updateAGR(Id, agr);
     }
 
     @DeleteMapping("/delete/{Id}")
-    public void deleteAGR(@PathVariable("Id") int Id){
+    public void deleteAGR(@PathVariable("Id") UUID Id){
         service.deleteAGR(Id);
     }
 
