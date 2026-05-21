@@ -35,7 +35,8 @@ public class Certificate {
 //    @JoinColumn(name = "agr_id", nullable = false)
 //    private AGR agr;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Transient
     @JoinColumn(name = "client_id", nullable = false)
     @JsonBackReference
     private Client client;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "client_table")
 @Data
+@ToString(exclude = {"agr", "certificates"})
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -26,12 +28,13 @@ public class Client {
     @Column(length = 20)
     private String email;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "agr_id", nullable = false)
     @JsonBackReference
     private AGR agr;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    @Transient
     @JsonManagedReference
     private List<Certificate> certificates;
 

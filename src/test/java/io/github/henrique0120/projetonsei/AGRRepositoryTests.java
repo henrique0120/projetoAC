@@ -5,6 +5,7 @@ import io.github.henrique0120.projetonsei.repository.AGRRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +18,11 @@ public class AGRRepositoryTests {
     AGRRepository repository;
 
     @Test
-    public void registerTest(){
+    void registerTest(){
         AGR agr = new AGR();
-        agr.setCpf("92748578320");
-        agr.setName("joao");
-        agr.setEmail("joao@email.com");
+        agr.setCpf("09847564839");
+        agr.setName("Marcos");
+        agr.setEmail("Marcos@email.com");
 
         var attAgr = repository.save(agr);
         System.out.println(attAgr);
@@ -29,26 +30,25 @@ public class AGRRepositoryTests {
     }
 
     @Test
-    public void updateTest(){
-        var id = UUID.fromString("6f50c74d-8f5f-4ef9-9c2d-7e6da0e0b0a8");
+    void updateTest(){
+        var id = UUID.fromString("ec57c4e2-1897-4a1c-91a9-5e2f66225de7");
 
         Optional<AGR> possibleAGR = repository.findById(id);
-        AGR agr = new AGR();
 
         if (possibleAGR.isPresent()){
             AGR autorEncontrado = possibleAGR.get();
-            autorEncontrado.setName("henrique de souza silva");
+            autorEncontrado.setName("Joao");
             repository.save(autorEncontrado);
         }
     }
 
     @Test
-    public void getAGR(){
+    void getAGR(){
         List<AGR> listagrs = repository.findAll();
         for (AGR listagr : listagrs) {
             System.out.println(listagr);
         }
-
     }
+
 
 }
