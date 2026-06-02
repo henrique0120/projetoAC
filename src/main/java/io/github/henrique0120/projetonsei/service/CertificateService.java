@@ -5,6 +5,7 @@ import io.github.henrique0120.projetonsei.model.Certificate;
 import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.repository.CertificateRepository;
 import io.github.henrique0120.projetonsei.repository.ClientRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class CertificateService {
         return certificateRepository.save(certificate);
     }
 
-    public void deleteCertificate(UUID Id){
-        certificateRepository.deleteById(Id);
+    public void deleteCertificate(UUID id){
+        certificateRepository.deleteById(id);
     }
 }

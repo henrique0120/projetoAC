@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    private UUID id;
 
     @Column(length = 11)
     private String cpf;

@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    private UUID id;
 
     @Column(length = 11)
     private String token;

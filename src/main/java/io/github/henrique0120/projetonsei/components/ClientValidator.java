@@ -1,6 +1,5 @@
 package io.github.henrique0120.projetonsei.components;
 
-import io.github.henrique0120.projetonsei.model.AGR;
 import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.repository.ClientRepository;
 import org.springframework.stereotype.Component;

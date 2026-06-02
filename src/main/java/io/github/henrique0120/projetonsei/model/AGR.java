@@ -15,7 +15,7 @@ import java.util.UUID;
 public class AGR {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    private UUID id;
 
     @Column(length = 11, nullable = false)
     private String cpf;

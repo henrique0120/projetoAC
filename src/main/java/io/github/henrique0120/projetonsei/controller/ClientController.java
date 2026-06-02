@@ -2,38 +2,32 @@ package io.github.henrique0120.projetonsei.controller;
 
 import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/client")
+@RequiredArgsConstructor
 public class ClientController {
 
     private final ClientService service;
-
-    public ClientController(ClientService service) {
-        this.service = service;
-    }
 
     @PostMapping
     public Client registerClient(@RequestBody Client client, @RequestParam UUID agrId){
         return service.registerClient(client, agrId);
     }
 
-    @PutMapping("/update/{Id}")
-    public void updateClient(@PathVariable UUID Id,
+    @PutMapping("/update/{id}")
+    public void updateClient(@PathVariable UUID id,
                              @RequestBody Client client,
                              @RequestParam UUID agrId) {
-        service.updateClient(Id, agrId, client);
+        service.updateClient(id, agrId, client);
     }
 
-    @DeleteMapping("/delete/{Id}")
-    public void deleteClient(@PathVariable("Id") UUID Id){
-        service.deleteClient(Id);
+    @DeleteMapping("/delete/{id}")
+    public void deleteClient(@PathVariable("id") UUID id){
+        service.deleteClient(id);
     }
-
-
-
 }
