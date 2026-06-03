@@ -17,13 +17,13 @@ public class AGR {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(length = 11, nullable = false)
+    @Column(length = 11, nullable = false, unique = true)
     private String cpf;
 
     @Column(length = 50, nullable = false)
     private String name;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, unique = true)
     private String email;
 
     @OneToMany(mappedBy = "agr", fetch = FetchType.LAZY)
