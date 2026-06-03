@@ -1,5 +1,6 @@
 package io.github.henrique0120.projetonsei.components;
 
+import io.github.henrique0120.projetonsei.dto.ErroResposta;
 import io.github.henrique0120.projetonsei.exception.CPFExistenteException;
 import io.github.henrique0120.projetonsei.exception.EmailExistenteException;
 import io.github.henrique0120.projetonsei.model.AGR;
@@ -16,7 +17,7 @@ public class AGRValidator {
 
     public void validateAGR(AGR agr){
         if(existsBycpf(agr.getCpf())){
-            throw new CPFExistenteException("Já existe um(a) AGR cadastrado(a) com esse CFP!");
+            throw new CPFExistenteException("Já existe um(a) AGR cadastrado(a) com esse CPF!");
         }
     }
 
