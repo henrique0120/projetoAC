@@ -1,5 +1,7 @@
 package io.github.henrique0120.projetonsei.controller;
 
+import io.github.henrique0120.projetonsei.dto.AGRDTO;
+import io.github.henrique0120.projetonsei.mapper.AGRMapper;
 import io.github.henrique0120.projetonsei.model.AGR;
 import io.github.henrique0120.projetonsei.service.AGRService;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +16,11 @@ import java.util.UUID;
 public class AGRController {
 
     private final AGRService service;
+    private final AGRMapper mapper;
 
     @PostMapping("/register")
-    public ResponseEntity<Object> registerAGR(@RequestBody AGR agr){
+    public ResponseEntity<Object> registerAGR(@RequestBody AGRDTO dto){
+        AGR agr = mapper.toEntity(dto);
         service.registerAGR(agr);
         return ResponseEntity.status(204).build();
     }

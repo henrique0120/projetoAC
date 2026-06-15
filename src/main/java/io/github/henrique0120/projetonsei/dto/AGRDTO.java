@@ -8,12 +8,4 @@ public record AGRDTO(
         String cpf,
         String name,
         String email
-){
-    public AGR mapearParaAgr(){
-        AGR agr = new AGR();
-        agr.setCpf(this.cpf());
-        agr.setName(this.name());
-        agr.setEmail(this.email());
-        return agr;
-    }
-}
+){}
