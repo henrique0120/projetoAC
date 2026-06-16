@@ -9,12 +9,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/AGR")
 @RequiredArgsConstructor
-public class AGRController {
+public class AGRController implements GenericController{
 
     private final AGRService service;
     private final AGRMapper mapper;
@@ -23,7 +24,8 @@ public class AGRController {
     public ResponseEntity<Object> registerAGR(@RequestBody @Valid AGRDTO dto){
         AGR agr = mapper.toEntity(dto);
         service.registerAGR(agr);
-        return ResponseEntity.status(204).build();
+        URI location = gerarHeaderLocation(agr.getId());
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/update/{Id}")

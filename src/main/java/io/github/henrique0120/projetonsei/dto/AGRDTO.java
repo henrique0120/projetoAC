@@ -1,6 +1,5 @@
 package io.github.henrique0120.projetonsei.dto;
 
-import io.github.henrique0120.projetonsei.model.AGR;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
