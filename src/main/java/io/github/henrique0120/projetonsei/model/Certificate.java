@@ -1,34 +1,34 @@
 package io.github.henrique0120.projetonsei.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import io.github.henrique0120.projetonsei.enums.CertificateType;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "certificate_table")
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
-    @Column(length = 11)
-    private String token;
+    private UUID token;
 
     @Column(length = 50)
     private String password;
 
-    @CreationTimestamp
-    private Date date;
+    @CreatedDate
+    @Column(name = "data_criação")
+    private LocalDateTime dataCriacao;
 
-    @Column(nullable = false)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false, length = 30)
     private CertificateType type;
 
 //    @ManyToOne

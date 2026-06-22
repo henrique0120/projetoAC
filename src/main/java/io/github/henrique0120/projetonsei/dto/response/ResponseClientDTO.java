@@ -1,16 +1,19 @@
-package io.github.henrique0120.projetonsei.dto;
+package io.github.henrique0120.projetonsei.dto.response;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
-public record AGRDTO(
-        @NotBlank(message = "O campo CPF não pode ficar vazio!")
+import java.util.UUID;
+
+public record ResponseClientDTO(
+        UUID id,
         @CPF
+        @NotBlank(message = "O campo CPF não pode ficar vazio!")
         String cpf,
         @NotBlank(message = "O campo Nome não pode ficar vazio!")
         String name,
-        @NotBlank(message = "O campo Email não pode ficar vazio!")
         @Email
+        @NotBlank(message = "O campo Email não pode ficar vazio!")
         String email
 ){}

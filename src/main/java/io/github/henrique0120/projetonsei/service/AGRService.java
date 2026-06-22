@@ -18,8 +18,8 @@ public class AGRService {
     private final AGRValidator validator;
 
     public AGR registerAGR(AGR agr){
-        //validator.validateAGR(agr);
-        //validator.validateEmail(agr);
+        validator.validateAGR(agr);
+        validator.validateEmail(agr);
         return repository.save(agr);
     }
 

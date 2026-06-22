@@ -13,7 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "client_table")
 @Data
-@ToString(exclude = {"agr", "certificates"})
+@ToString(exclude = {"certificates"})
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

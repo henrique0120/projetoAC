@@ -8,5 +8,5 @@ public enum CertificateType {
     ECPF_A3_NUVEM,
     ECPF_A1,
     E_PJ,
-    E_PF,
+    E_PF
 }
