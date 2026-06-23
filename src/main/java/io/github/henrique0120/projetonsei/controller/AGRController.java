@@ -25,7 +25,7 @@ public class AGRController implements GenericController{
         AGR agr = mapper.toEntity(dto);
         service.registerAGR(agr);
         URI location = gerarHeaderLocation(agr.getId());
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body("Registro de AGR feito com sucesso!");
     }
 
     @PutMapping("{id}")

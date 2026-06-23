@@ -10,21 +10,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/client")
 @RequiredArgsConstructor
-public class ClientController {
+public class ClientController implements GenericController{
 
     private final ClientService service;
     private final ClientMapper mapper;
 
     @PostMapping
-    public ResponseEntity<Void> registerClient(@RequestBody @Valid RequestClientDTO dto){
+    public ResponseEntity<Object> registerClient(@RequestBody @Valid RequestClientDTO dto){
         Client cliente = mapper.toEntity(dto);
         service.registerClient(cliente);
-        return ResponseEntity.ok().build();
+        URI location = gerarHeaderLocation(cliente.getId());
+        return ResponseEntity.created(location).body("Registro de cliente feito com sucesso!");
     }
 
     @PutMapping("{id}")

@@ -9,21 +9,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/certificate")
 @RequiredArgsConstructor
-public class CertificateController {
+public class CertificateController implements GenericController{
 
     private final CertificateService certificateService;
     private final CertificateMapper mapper;
 
     @PostMapping
-    public ResponseEntity<Void> saveCertificate(@RequestBody @Valid RequestCertificateDTO dto){
+    public ResponseEntity<Object> saveCertificate(@RequestBody @Valid RequestCertificateDTO dto){
         Certificate certificado = mapper.toEntity(dto);
         certificateService.saveCertificate(certificado);
-        return ResponseEntity.ok().build();
+        URI location = gerarHeaderLocation(certificado.getToken());
+        return ResponseEntity.created(location).body("Certificado emitido com sucesso!");
     }
 
     @DeleteMapping("{id}")

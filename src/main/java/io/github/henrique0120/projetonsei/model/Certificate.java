@@ -18,14 +18,14 @@ import java.util.UUID;
 public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID token;
+    private UUID ticket;
 
     @Column(length = 50)
     private String password;
 
     @CreatedDate
-    @Column(name = "data_criação")
-    private LocalDateTime dataCriacao;
+    @Column(name = "data_emissao")
+    private LocalDateTime dataEmissao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 30)
@@ -41,4 +41,7 @@ public class Certificate {
     @JsonBackReference
     private Client client;
 
+    public void calcValidade(){
+        System.out.println(this.getDataEmissao().getYear() + 1);
+    }
 }
