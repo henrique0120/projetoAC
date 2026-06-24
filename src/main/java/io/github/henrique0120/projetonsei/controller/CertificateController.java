@@ -24,7 +24,7 @@ public class CertificateController implements GenericController{
     public ResponseEntity<Object> saveCertificate(@RequestBody @Valid RequestCertificateDTO dto){
         Certificate certificado = mapper.toEntity(dto);
         certificateService.saveCertificate(certificado);
-        URI location = gerarHeaderLocation(certificado.getToken());
+        URI location = gerarHeaderLocation(certificado.getTicket());
         return ResponseEntity.created(location).body("Certificado emitido com sucesso!");
     }
 

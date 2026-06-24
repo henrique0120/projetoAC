@@ -8,7 +8,9 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -23,9 +25,8 @@ public class Certificate {
     @Column(length = 50)
     private String password;
 
-    @CreatedDate
     @Column(name = "data_emissao")
-    private LocalDateTime dataEmissao;
+    private LocalDate dataEmissao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 30)
@@ -41,7 +42,7 @@ public class Certificate {
     @JsonBackReference
     private Client client;
 
-    public void calcValidade(){
-        System.out.println(this.getDataEmissao().getYear() + 1);
-    }
+//    public void calcValidade(){
+//        System.out.println(this.getDataEmissao().getYear() + 1);
+//    }
 }

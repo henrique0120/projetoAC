@@ -13,7 +13,7 @@ public abstract class CertificateMapper{
     @Autowired
     ClientRepository clientRepository;
 
-    @Mapping(target = "date", ignore = true)
+    //@Mapping(target = "date", ignore = true)
     @Mapping(target = "client", expression = "java(clientRepository.findById(dto.idClient()).orElse(null))")
     public abstract Certificate toEntity(RequestCertificateDTO dto);
 
