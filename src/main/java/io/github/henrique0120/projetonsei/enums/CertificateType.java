@@ -1,5 +1,7 @@
 package io.github.henrique0120.projetonsei.enums;
 
+import org.springframework.stereotype.Component;
+
 public enum CertificateType {
     ECNPJ_A3,
     ECNPJ_A3_NUVEM,

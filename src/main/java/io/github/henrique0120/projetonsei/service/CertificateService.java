@@ -1,5 +1,6 @@
 package io.github.henrique0120.projetonsei.service;
 
+import io.github.henrique0120.projetonsei.enums.CertificateStatus;
 import io.github.henrique0120.projetonsei.model.Certificate;
 import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.repository.CertificateRepository;
@@ -7,6 +8,8 @@ import io.github.henrique0120.projetonsei.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -17,6 +20,13 @@ public class CertificateService {
     private CertificateRepository certificateRepository;
 
     public void saveCertificate(Certificate certificate){
+        LocalDateTime dataValidade = LocalDateTime.now();
+        switch(certificate.getType()){
+            case ECNPJ_A3, ECNPJ_A3_NUVEM,
+                 ECPF_A3_NUVEM, ECPF_A3 -> certificate.setDataValidade(dataValidade.plusYears(3));
+            case ECNPJ_A1, ECPF_A1, E_PJ,E_PF -> certificate.setDataValidade(dataValidade.plusYears(1));
+        }
+        certificate.setStatus(CertificateStatus.EMITIDO);
         certificateRepository.save(certificate);
     }
 

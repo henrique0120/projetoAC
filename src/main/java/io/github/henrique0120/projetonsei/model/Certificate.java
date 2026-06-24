@@ -2,11 +2,13 @@ package io.github.henrique0120.projetonsei.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import io.github.henrique0120.projetonsei.enums.CertificateStatus;
 import io.github.henrique0120.projetonsei.enums.CertificateType;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,19 +27,28 @@ public class Certificate {
     @Column(length = 50)
     private String password;
 
+    @CreatedDate
     @Column(name = "data_emissao")
-    private LocalDate dataEmissao;
+    private LocalDateTime dataEmissao;
+
+    @DateTimeFormat
+    @Column(name = "data_validade")
+    private LocalDateTime dataValidade;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false, length = 30)
     private CertificateType type;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 30)
+    private CertificateStatus status;
 
 //    @ManyToOne
 //    @JoinColumn(name = "agr_id", nullable = false)
 //    private AGR agr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Transient
+    //@Transient
     @JoinColumn(name = "client_id", nullable = false)
     @JsonBackReference
     private Client client;

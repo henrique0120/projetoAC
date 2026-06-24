@@ -34,7 +34,7 @@ public class Client {
     private AGR agr;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
-    @Transient
+    //@Transient
     @JsonManagedReference
     private List<Certificate> certificates;
 
