@@ -8,6 +8,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public abstract class AGRMapper {
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "clients", ignore = true)
     public abstract AGR toEntity(RequestAgrDTO dto);
     public abstract RequestAgrDTO toDTO(AGR agr);
 

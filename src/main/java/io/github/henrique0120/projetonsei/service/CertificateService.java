@@ -2,14 +2,13 @@ package io.github.henrique0120.projetonsei.service;
 
 import io.github.henrique0120.projetonsei.enums.CertificateStatus;
 import io.github.henrique0120.projetonsei.model.Certificate;
-import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.repository.CertificateRepository;
-import io.github.henrique0120.projetonsei.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -18,6 +17,15 @@ public class CertificateService {
 
     @Autowired
     private CertificateRepository certificateRepository;
+
+    public Optional<Certificate> buscarPorId(String id){
+        var certificadoId = UUID.fromString(id);
+        Optional<Certificate> sla = certificateRepository.findById(certificadoId);
+        if (sla.get().getDataValidade().getDayOfMonth() > LocalDateTime.now().getDayOfMonth()){
+            sla.get().setStatus(CertificateStatus.VENCIDO);
+        }
+        return sla;
+    }
 
     public void saveCertificate(Certificate certificate){
         LocalDateTime dataValidade = LocalDateTime.now();
