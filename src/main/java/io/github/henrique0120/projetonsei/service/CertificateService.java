@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,13 +17,17 @@ public class CertificateService {
     @Autowired
     private CertificateRepository certificateRepository;
 
-    public Optional<Certificate> buscarPorId(String id){
-        var certificadoId = UUID.fromString(id);
-        Optional<Certificate> sla = certificateRepository.findById(certificadoId);
-        if (sla.get().getDataValidade().getDayOfMonth() > LocalDateTime.now().getDayOfMonth()){
-            sla.get().setStatus(CertificateStatus.VENCIDO);
-        }
-        return sla;
+    public Optional<Certificate> buscarPorId(String id) {
+        UUID certificadoId = UUID.fromString(id);
+
+        return certificateRepository.findById(certificadoId)
+                .map(certificado -> {
+                    if (certificado.getDataValidade().isBefore(LocalDateTime.now())) {
+                        certificado.setStatus(CertificateStatus.VENCIDO);
+                        certificateRepository.save(certificado);
+                    }
+                    return certificado;
+                });
     }
 
     public void saveCertificate(Certificate certificate){
