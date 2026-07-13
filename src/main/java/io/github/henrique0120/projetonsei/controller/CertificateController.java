@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -22,11 +23,13 @@ public class CertificateController implements GenericController{
     private final CertificateMapper mapper;
 
     @GetMapping("{id}")
+    @PreAuthorize("hasRole('AGR')")
     public ResponseEntity<Object> searchCertificate(@PathVariable String id){
         return ResponseEntity.ok(certificateService.buscarPorId(id));
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('AGR')")
     public ResponseEntity<Object> saveCertificate(@RequestBody @Valid RequestCertificateDTO dto){
         Certificate certificado = mapper.toEntity(dto);
         certificateService.saveCertificate(certificado);
@@ -35,6 +38,7 @@ public class CertificateController implements GenericController{
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('AGR')")
     public void deleteCertificate(@PathVariable("id") UUID id){
         certificateService.deleteCertificate(id);
     }

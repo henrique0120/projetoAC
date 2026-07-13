@@ -31,11 +31,13 @@ public class AGRController implements GenericController{
     }
 
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('SUPORTE')")
     public void updateAGR(@PathVariable("id") UUID id, @RequestBody AGR agr){
         service.updateAGR(id, agr);
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('SUPORTE')")
     public void deleteAGR(@PathVariable("id") UUID id){
         service.deleteAGR(id);
     }

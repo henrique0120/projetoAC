@@ -8,6 +8,7 @@ import io.github.henrique0120.projetonsei.service.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -22,6 +23,7 @@ public class ClientController implements GenericController{
     private final ClientMapper mapper;
 
     @PostMapping
+    @PreAuthorize("hasRole('AGR')")
     public ResponseEntity<Object> registerClient(@RequestBody @Valid RequestClientDTO dto){
         Client cliente = mapper.toEntity(dto);
         service.registerClient(cliente);
@@ -30,6 +32,7 @@ public class ClientController implements GenericController{
     }
 
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('AGR')")
     public void updateClient(@PathVariable UUID id,
                              @RequestBody Client client,
                              @RequestParam UUID agrId) {
@@ -37,6 +40,7 @@ public class ClientController implements GenericController{
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('AGR')")
     public void deleteClient(@PathVariable("id") UUID id){
         service.deleteClient(id);
     }
