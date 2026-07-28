@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "AGR_table")
+@Table(name = "AGR")
 @Data
-@ToString(exclude = "clients")
+@ToString(exclude = "customers")
 public class AGR {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -28,6 +28,6 @@ public class AGR {
 
     @OneToMany(mappedBy = "agr", fetch = FetchType.LAZY)
     @JsonManagedReference
-    private List<Client> clients;
+    private List<Customer> customers;
 
 }

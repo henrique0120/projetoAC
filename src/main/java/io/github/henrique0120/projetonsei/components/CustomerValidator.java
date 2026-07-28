@@ -1,26 +1,26 @@
 package io.github.henrique0120.projetonsei.components;
 
-import io.github.henrique0120.projetonsei.model.Client;
-import io.github.henrique0120.projetonsei.repository.ClientRepository;
+import io.github.henrique0120.projetonsei.model.Customer;
+import io.github.henrique0120.projetonsei.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClientValidator {
+public class CustomerValidator {
 
-    private final ClientRepository repository;
+    private final CustomerRepository repository;
 
-    public ClientValidator(ClientRepository repository) {
+    public CustomerValidator(CustomerRepository repository) {
         this.repository = repository;
     }
 
-    public void validateClient(Client client){
-        if(existsBycpf(client.getCpf())){
+    public void validateCustomer(Customer customer){
+        if(existsBycpf(customer.getCpf())){
             throw new IllegalArgumentException("Já existe um(a) cliente cadastrado(a) com esse CPF!");
         }
     }
 
-    public void validateEmail(Client client){
-        if(existsByemail(client.getEmail())){
+    public void validateEmail(Customer customer){
+        if(existsByemail(customer.getEmail())){
             throw new IllegalArgumentException("Já existe um(a) cliente cadastrado(a) com esse Email!");
         }
     }

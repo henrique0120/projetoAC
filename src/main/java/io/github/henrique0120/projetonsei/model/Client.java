@@ -1,41 +1,28 @@
 package io.github.henrique0120.projetonsei.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "client_table")
+@Table
 @Data
-@ToString(exclude = {"certificates"})
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(length = 11)
-    private String cpf;
+    @Column(name = "client_id")
+    private String clientId;
 
-    @Column(length = 50)
-    private String name;
+    @Column(name = "client_secret")
+    private String clientSecret;
 
-    @Column(length = 20)
-    private String email;
+    @Column(name = "redirect_uri")
+    private String redirectURI;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "agr_id", nullable = false)
-    @JsonBackReference
-    private AGR agr;
-
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
-    //@Transient
-    @JsonManagedReference
-    private List<Certificate> certificates;
-
+    @Column(name = "scope")
+    private String scope;
 }

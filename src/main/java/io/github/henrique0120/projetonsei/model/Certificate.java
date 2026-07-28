@@ -10,13 +10,11 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "certificate_table")
+@Table(name = "certificate")
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Certificate {
@@ -48,9 +46,9 @@ public class Certificate {
 //    private AGR agr;
     @ManyToOne(fetch = FetchType.LAZY)
     //@Transient
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     @JsonBackReference
-    private Client client;
+    private Customer customer;
 
 //    public void calcValidade(){
 //        System.out.println(this.getDataEmissao().getYear() + 1);

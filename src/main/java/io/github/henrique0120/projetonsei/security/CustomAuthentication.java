@@ -21,22 +21,23 @@ public class CustomAuthentication implements Authentication {
     public Collection<GrantedAuthority> getAuthorities() {
         return this.users
                 .getRoles()
-                .stream().map(role -> new SimpleGrantedAuthority(role))
+                .stream()
+                .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public @Nullable Object getCredentials() {
+    public Object getCredentials() {
         return null;
     }
 
     @Override
-    public @Nullable Object getDetails() {
+    public Object getDetails() {
         return users;
     }
 
     @Override
-    public @Nullable Object getPrincipal() {
+    public Object getPrincipal() {
         return users;
     }
 

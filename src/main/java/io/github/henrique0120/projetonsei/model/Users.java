@@ -24,8 +24,11 @@ public class Users {
     @Column
     private String password;
 
+    @Column
+    private String email;
+
     @Type(ListArrayType.class)
-    @Column(columnDefinition = "varchar[]")
+    @Column(name = "roles", columnDefinition = "varchar[]")
     private List<String> roles;
 
 }

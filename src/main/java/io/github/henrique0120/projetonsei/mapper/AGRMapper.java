@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 public abstract class AGRMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "clients", ignore = true)
+    @Mapping(target = "customers", ignore = true)
     public abstract AGR toEntity(RequestAgrDTO dto);
     public abstract RequestAgrDTO toDTO(AGR agr);
 

@@ -11,6 +11,8 @@ public record RequestUsersDTO(
         String login,
         @NotBlank(message = "O campo password não pode ficar vazio!")
         String password,
+        @NotBlank(message = "O campo email não pode ficar vazio!")
+        String email,
         @NotNull
         List<String>roles
 ) {}

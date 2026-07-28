@@ -19,7 +19,7 @@ public class CustomUsersDetailsService implements UserDetailsService {
         Users users = service.findByLogin(login);
 
         if(users == null){
-            throw new UsernameNotFoundException("Usuario não encontrado!");
+            throw new UsernameNotFoundException("Users não encontrado!");
         }
 
         return User.builder()

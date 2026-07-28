@@ -22,7 +22,7 @@ public class AGRController implements GenericController{
     private final AGRMapper mapper;
 
     @PostMapping
-    @PreAuthorize("hasRole('SUPORTE')")
+    @PreAuthorize("hasRole('GERENTE')")
     public ResponseEntity<Object> registerAGR(@RequestBody @Valid RequestAgrDTO dto){
         AGR agr = mapper.toEntity(dto);
         service.registerAGR(agr);
