@@ -20,7 +20,7 @@ public class ClientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
 
-    @PreAuthorize("hasRole('GERENTE')")
+    @PreAuthorize("hasRole('SUPORTE')")
     public void salvar (@RequestBody RequestClientDTO clientDto){
         var sla = mapper.toEntity(clientDto);
         service.salvar(sla);
