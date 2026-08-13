@@ -10,6 +10,7 @@ import org.mapstruct.Mapping;
 public abstract class UsersMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "roles", ignore = true)
     public abstract Users toEntity(RequestUsersDTO dto);
     public abstract RequestCustomerDTO toDTO(Users users);
 

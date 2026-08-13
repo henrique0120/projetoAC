@@ -19,8 +19,8 @@ public class UsersService {
         repository.save(users);
     }
 
-    public Users findByLogin(String login){
-        return repository.findByLogin(login);
+    public Users findByName(String name){
+        return repository.findByName(name);
     }
 
     public Users obterPorEmail(String email){
