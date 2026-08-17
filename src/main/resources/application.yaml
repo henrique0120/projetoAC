@@ -19,3 +19,6 @@ spring:
           google:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
+jwt:
+  expiration: ${JWt_EXPIRATION:900000}
+  key: ${JWT_KEY:4OC5VGfI26HeFMVq_u5TNFw$B_MrjmdJGB3OmW!#KR1RtrwQ2YiwSEvhZK$!26uEetO#JU3o1SqEXSbP5vk-6VK!M8SAB5QAFcuA2Vi6Kz#tp0KK-cVtMi0b-cl-x#h9gcyScuL8bB9vqUXtm87!pCc-3bMAvQ2IE5H==4bzENcMRR9uWfwTJvNEQRmaLbl0IvIhDAycVF$HGIIFYc5zHFxeoNi4DMvyId7nNWyfymtnMTd_lysNdF8E4Y!j43W-Wr2DOJ$cP1PAVQ0=PbFiy7S!SV!AWAeGCFzOYOreqW0GqwIZlSSM&DS2jgcJVPzha!fvMqfda2PH!qUlC6DocOBe}
