@@ -1,10 +1,14 @@
-package io.github.henrique0120.projetonsei.security;
+package io.github.henrique0120.projetonsei.config;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Component
@@ -32,4 +36,35 @@ public class TokenProvider {
                 .compact();
     }
 
+    private SecretKey getSigningKey() {
+        return Keys.hmacShaKeyFor(key.getBytes());
+    }
+
+    //validar
+    public boolean isTokenValid(String token){
+        try {
+            getClaims(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    //extrair informações do token
+    public String getUsername (String token){
+        return getClaims(token).getSubject();
+    }
+
+    private Claims getClaims(String token){
+        //validar assinatura
+        //validar expiração
+
+        return Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
 }
+

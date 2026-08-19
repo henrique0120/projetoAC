@@ -10,12 +10,12 @@ public record ResponseUsersDTO(
 
         @NotNull
         UUID id,
-        @NotBlank(message = "O campo login não pode ficar vazio!")
-        String login,
-        @NotBlank(message = "O campo password não pode ficar vazio!")
-        String password,
+        @NotBlank(message = "O campo name não pode ficar vazio!")
+        String name,
         @NotBlank(message = "O campo email não pode ficar vazio!")
         String email,
+        @NotBlank(message = "O campo password não pode ficar vazio!")
+        String password,
         @NotNull
         List<String> roles
 
