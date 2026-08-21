@@ -3,6 +3,7 @@ package io.github.henrique0120.projetonsei.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "roles")
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +28,5 @@ public class Roles implements GrantedAuthority {
     public @Nullable String getAuthority() {
         return name;
     }
+
 }
