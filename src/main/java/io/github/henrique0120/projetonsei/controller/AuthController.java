@@ -1,6 +1,8 @@
 package io.github.henrique0120.projetonsei.controller;
 
+import io.github.henrique0120.projetonsei.dto.request.RequestAuthLoginDTO;
 import io.github.henrique0120.projetonsei.dto.request.RequestAuthRegisterDTO;
+import io.github.henrique0120.projetonsei.dto.response.TokenResponseDTO;
 import io.github.henrique0120.projetonsei.model.Users;
 import io.github.henrique0120.projetonsei.service.AuthenticationService;
 import jakarta.validation.Valid;
@@ -25,6 +27,11 @@ public class AuthController {
         service.createUser(dto);
         return ResponseEntity.ok().build();
 
+    }
+
+    @PostMapping("login")
+    public TokenResponseDTO login(@RequestBody @Valid RequestAuthLoginDTO dto) throws Exception {
+        return service.login(dto);
     }
 
 

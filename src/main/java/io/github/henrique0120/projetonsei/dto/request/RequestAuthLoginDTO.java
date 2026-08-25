@@ -1,11 +1,16 @@
 package io.github.henrique0120.projetonsei.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
-public record RequestAuthLoginDTO (
-        @NotBlank
-        String name,
-        @NotBlank
-        String password
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class RequestAuthLoginDTO {
 
-){}
+        @NotBlank
+        String email;
+        @NotBlank
+        String password;
+}
