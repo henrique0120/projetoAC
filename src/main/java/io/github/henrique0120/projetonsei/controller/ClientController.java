@@ -4,6 +4,7 @@ import io.github.henrique0120.projetonsei.dto.request.RequestClientDTO;
 import io.github.henrique0120.projetonsei.mapper.ClientMapper;
 import io.github.henrique0120.projetonsei.model.Client;
 import io.github.henrique0120.projetonsei.service.ClientService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("clients")
 @RequiredArgsConstructor
+@Tag(name = "Client")
 public class ClientController {
 
     private final ClientService service;

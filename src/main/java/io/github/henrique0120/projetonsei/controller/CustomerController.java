@@ -4,6 +4,7 @@ import io.github.henrique0120.projetonsei.dto.request.RequestCustomerDTO;
 import io.github.henrique0120.projetonsei.mapper.CustomerMapper;
 import io.github.henrique0120.projetonsei.model.Customer;
 import io.github.henrique0120.projetonsei.service.CustomerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/client")
 @RequiredArgsConstructor
+@Tag(name = "Customer")
 public class CustomerController implements GenericController{
 
     private final CustomerService service;

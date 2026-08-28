@@ -9,7 +9,6 @@ import io.github.henrique0120.projetonsei.model.Roles;
 import io.github.henrique0120.projetonsei.model.Users;
 import io.github.henrique0120.projetonsei.repository.RolesRepository;
 import io.github.henrique0120.projetonsei.repository.UsersRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Value;

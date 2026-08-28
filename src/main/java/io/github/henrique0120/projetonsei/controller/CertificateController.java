@@ -4,6 +4,7 @@ import io.github.henrique0120.projetonsei.dto.request.RequestCertificateDTO;
 import io.github.henrique0120.projetonsei.mapper.CertificateMapper;
 import io.github.henrique0120.projetonsei.model.Certificate;
 import io.github.henrique0120.projetonsei.service.CertificateService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.connector.Response;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/certificate")
 @RequiredArgsConstructor
+@Tag(name = "Certificate")
 public class CertificateController implements GenericController{
 
     private final CertificateService certificateService;

@@ -5,6 +5,7 @@ import io.github.henrique0120.projetonsei.dto.request.RequestAuthRegisterDTO;
 import io.github.henrique0120.projetonsei.dto.response.TokenResponseDTO;
 import io.github.henrique0120.projetonsei.model.Users;
 import io.github.henrique0120.projetonsei.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("auth")
 @RequiredArgsConstructor
+@Tag(name = "Auth")
 public class AuthController {
 
     private final AuthenticationService service;
