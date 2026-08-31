@@ -23,4 +23,5 @@ jwt:
   expiration: ${JWT_EXPIRATION:900000}
   key: ${JWT_KEY:vgJU56FokOs=QooErPB4$PrRmuL#a$e0Wt#mX!ohmgCefhXrNM&!cyfY!zTEtVg7iBD8jY49ow8_=BPC2V4-z3#6RQfIgPtG2Vg_YgA2iWVjm_PF0Wr31JJiQGWN9=H0TkVDBrnt$6lKJLs76Q6tRdn2dc1JR6WwGRTh=SWfC=GtKrICMGsp_HbtTlOB2O8SWO_gLE!gpmT12VGhu6bY!2vCd6AJBebpZoti$R4smRdozGQwZRUCf8Inr#v0ByLAvAQVySuCT1g#M0gd2bp#RYomBMKIc0Ipy-cRIP9JPjU8tgpw7vIJPobz6Bec2mAor&gMagnnMID_3ZMCbOCdls-u}
 
-
+springdoc:
+  override-with-generic-response: false
