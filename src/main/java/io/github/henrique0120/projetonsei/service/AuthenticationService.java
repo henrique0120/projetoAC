@@ -43,10 +43,8 @@ public class AuthenticationService{
             throw new BadRequestException("Já existe um usuario cadastrado com esse e-mail.");
         }
 
-        Roles role = rolesRepository.findByName(RoleType.ROLE_SUPORTE.name())
-                .orElseGet(() -> rolesRepository.save(Roles.builder()
-                        .name(RoleType.ROLE_SUPORTE.name())
-                        .build()));
+        Roles role = rolesRepository.findByName(dto.getRole().name())
+                .orElseThrow(() -> new BadRequestException("Role não encontrada."));
 
         usersRepository.save(Users.builder()
                 .name(dto.getName())
@@ -54,8 +52,6 @@ public class AuthenticationService{
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .roles(Set.of(role))
                 .build());
-
-
     }
 
     public TokenResponseDTO login(RequestAuthLoginDTO dto) throws Exception{

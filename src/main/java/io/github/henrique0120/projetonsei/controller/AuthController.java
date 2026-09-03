@@ -8,6 +8,7 @@ import io.github.henrique0120.projetonsei.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,13 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("auth")
 @RequiredArgsConstructor
 @Tag(name = "Auth")
+@Slf4j
 public class AuthController {
 
     private final AuthenticationService service;
 
     @PostMapping("save")
     public ResponseEntity<Users> save(@RequestBody @Valid RequestAuthRegisterDTO dto) throws BadRequestException {
-
+        log.info("User saved: {}", dto.getName());
         service.createUser(dto);
         return ResponseEntity.ok().build();
 
