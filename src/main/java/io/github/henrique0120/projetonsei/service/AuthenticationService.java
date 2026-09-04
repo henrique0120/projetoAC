@@ -4,7 +4,6 @@ import io.github.henrique0120.projetonsei.config.TokenProvider;
 import io.github.henrique0120.projetonsei.dto.request.RequestAuthLoginDTO;
 import io.github.henrique0120.projetonsei.dto.request.RequestAuthRegisterDTO;
 import io.github.henrique0120.projetonsei.dto.response.TokenResponseDTO;
-import io.github.henrique0120.projetonsei.enums.RoleType;
 import io.github.henrique0120.projetonsei.model.Roles;
 import io.github.henrique0120.projetonsei.model.Users;
 import io.github.henrique0120.projetonsei.repository.RolesRepository;
@@ -44,7 +43,13 @@ public class AuthenticationService{
         }
 
         Roles role = rolesRepository.findByName(dto.getRole().name())
-                .orElseThrow(() -> new BadRequestException("Role não encontrada."));
+                .orElseGet(() -> rolesRepository.save(
+                        Roles.builder()
+                                .name(dto.getRole().name())
+                                .build()
+                ));
+
+        System.out.println("ROLE ENCONTRADA: " + role.getName());
 
         usersRepository.save(Users.builder()
                 .name(dto.getName())
