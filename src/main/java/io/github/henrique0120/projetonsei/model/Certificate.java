@@ -18,9 +18,10 @@ import java.util.UUID;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 public class Certificate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID ticket;
+    private UUID id;
 
     @Column(length = 50)
     private String password;
