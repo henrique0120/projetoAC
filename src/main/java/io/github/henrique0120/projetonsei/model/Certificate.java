@@ -23,6 +23,9 @@ public class Certificate {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "ticket")
+    private long ticket;
+
     @Column(length = 50)
     private String password;
 

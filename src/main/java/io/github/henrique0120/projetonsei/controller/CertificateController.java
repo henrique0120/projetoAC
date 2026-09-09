@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Random;
 import java.util.UUID;
 
 @RestController
@@ -33,8 +34,11 @@ public class CertificateController implements GenericController{
     @PreAuthorize("hasRole('AGR')")
     public ResponseEntity<Object> saveCertificate(@RequestBody @Valid RequestCertificateDTO dto){
         Certificate certificado = mapper.toEntity(dto);
+        Random random = new Random();
+        var a = random.nextLong(999999999);
+        certificado.setTicket(a);
         certificateService.saveCertificate(certificado);
-        URI location = gerarHeaderLocation(certificado.getTicket());
+        URI location = gerarHeaderLocation(certificado.getId());
         return ResponseEntity.created(location).body("Certificado emitido com sucesso!");
     }
 

@@ -10,17 +10,20 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Random;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/AGR")
 @RequiredArgsConstructor
 @Tag(name = "AGR")
+@Slf4j
 public class AGRController implements GenericController{
 
     private final AGRService service;
@@ -40,6 +43,17 @@ public class AGRController implements GenericController{
         service.registerAGR(agr);
         URI location = gerarHeaderLocation(agr.getId());
         return ResponseEntity.created(location).body("Registro de AGR feito com sucesso!");
+    }
+
+    @GetMapping("{id}")
+    @PreAuthorize("hasRole('SUPORTE')")
+    @Operation(summary = "Find", description = "Find AGR")
+    public ResponseEntity<Object> findAGR(@PathVariable UUID id){
+        var sla = service.findAGR(id);
+        Random random = new Random();
+        var x = random.nextLong(999999999);
+        log.info(String.valueOf(x));
+        return ResponseEntity.ok(sla);
     }
 
     @PutMapping("{id}")
