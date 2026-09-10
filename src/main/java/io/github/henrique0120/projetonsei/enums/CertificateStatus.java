@@ -1,7 +1,8 @@
 package io.github.henrique0120.projetonsei.enums;
 
 public enum CertificateStatus {
-    EMITIDO,
+    PENDENTE_EMISSAO,
+    INSTALADO_COM_SUCESSO,
     VENCIDO,
-    CANCELADO
+    REVOGADO
 }

@@ -7,6 +7,7 @@ import io.github.henrique0120.projetonsei.service.CertificateService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class CertificateController implements GenericController{
 
     @PostMapping
     @PreAuthorize("hasRole('AGR')")
-    public ResponseEntity<Object> saveCertificate(@RequestBody @Valid RequestCertificateDTO dto){
+    public ResponseEntity<Object> saveCertificate(@RequestBody @Valid RequestCertificateDTO dto) throws BadRequestException {
         Certificate certificado = mapper.toEntity(dto);
         Random random = new Random();
         var a = random.nextLong(999999999);

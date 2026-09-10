@@ -29,7 +29,7 @@ public class CertificateTests {
         certificate.setDataEmissao(LocalDateTime.now().minusDays(1));
         certificate.setDataValidade(LocalDateTime.now());
         certificate.setType(CertificateType.ECNPJ_A1);
-        certificate.setStatus(CertificateStatus.EMITIDO);
+        certificate.setStatus(CertificateStatus.PENDENTE_EMISSAO);
 
         Customer customer = customerRepository
                 .findById(UUID.fromString("e39db68a-2358-4502-88ef-7c9baf2b3a36"))
