@@ -19,7 +19,7 @@ public class EmitionController {
     private final EmitionService emitionService;
 
     @PostMapping
-    public ResponseEntity<Object> emit(@RequestBody RequestEmitionDTO dto) throws BadRequestException {
+    public ResponseEntity<Object> emit(@RequestBody RequestEmitionDTO dto){
         var sla = emitionService.emit(dto);
         return ResponseEntity.ok(sla);
 
