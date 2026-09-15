@@ -11,6 +11,6 @@ import java.util.UUID;
 public interface CertificateRepository extends JpaRepository<Certificate, UUID> {
 
     Optional<Certificate> findByTicket(long ticket);
-    boolean findByTicketAndPassword (long ticket, String password);
+    Optional<Certificate> findByTicketAndPassword (long ticket, String password);
 
 }
