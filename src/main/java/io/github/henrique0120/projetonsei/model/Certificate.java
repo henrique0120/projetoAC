@@ -6,7 +6,6 @@ import io.github.henrique0120.projetonsei.enums.CertificateStatus;
 import io.github.henrique0120.projetonsei.enums.CertificateType;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,7 +28,7 @@ public class Certificate {
     @Column(length = 50)
     private String password;
 
-    @CreatedDate
+    //@CreatedDate
     @Column(name = "data_emissao")
     private LocalDateTime dataEmissao;
 

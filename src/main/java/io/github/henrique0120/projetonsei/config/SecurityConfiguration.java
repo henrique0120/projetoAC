@@ -39,6 +39,7 @@ public class SecurityConfiguration {
                         }))
                 .authorizeHttpRequests(auth ->  auth
                             .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/emition").permitAll()
                             .requestMatchers("/error").permitAll()
                             .anyRequest().authenticated()
                 )

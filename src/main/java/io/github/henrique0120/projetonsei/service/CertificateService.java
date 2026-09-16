@@ -38,12 +38,12 @@ public class CertificateService {
             throw new BadRequestException("Já existe um certificado com esse ticket!");
         }
 
-        LocalDateTime dataValidade = LocalDateTime.now();
-        switch(certificate.getType()){
-            case ECNPJ_A3, ECNPJ_A3_NUVEM,
-                 ECPF_A3_NUVEM, ECPF_A3 -> certificate.setDataValidade(dataValidade.plusYears(3));
-            case ECNPJ_A1, ECPF_A1, E_PJ,E_PF -> certificate.setDataValidade(dataValidade.plusYears(1));
-        }
+//        LocalDateTime dataValidade = LocalDateTime.now();
+//        switch(certificate.getType()){
+//            case ECNPJ_A3, ECNPJ_A3_NUVEM,
+//                 ECPF_A3_NUVEM, ECPF_A3 -> certificate.setDataValidade(dataValidade.plusYears(3));
+//            case ECNPJ_A1, ECPF_A1, E_PJ,E_PF -> certificate.setDataValidade(dataValidade.plusYears(1));
+//        }
         certificate.setStatus(CertificateStatus.PENDENTE_EMISSAO);
         certificateRepository.save(certificate);
     }
